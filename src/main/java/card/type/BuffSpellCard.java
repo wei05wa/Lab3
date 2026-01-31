@@ -7,15 +7,14 @@ public class BuffSpellCard extends SpellCard {
 	private int powerIncrease;
 
 	public BuffSpellCard(String name, String flavorText, int bloodCost, boolean isBurstSpeed, int powerIncrease) {
-		super(name, flavorText, bloodCost, isBurstSpeed);
+		super(name, flavorText, bloodCost, isBurstSpeed); // ส่งให้ SpellCard -> Card
 		this.setPowerIncrease(powerIncrease);
 	}
 
 	@Override
 	public void castSpell(UnitCard unitCard) {
 		if (unitCard != null) {
-			// Logic: พลังใหม่ = พลังเดิม + ส่วนที่เพิ่ม
-			// ห้ามใช้ unitCard.setPower(unitCard.getPower() + unitCard.getPower()) เด็ดขาด
+			// หัวใจสำคัญ: ใช้ Getter เพื่อดึงค่าพลังปัจจุบันมาบวก
 			unitCard.setPower(unitCard.getPower() + this.getPowerIncrease());
 		}
 	}
@@ -28,6 +27,7 @@ public class BuffSpellCard extends SpellCard {
 
 	@Override
 	public String toString() {
+		// ต้องเรียก getName() และ getBloodCost() จากคลาสแม่เท่านั้น
 		return getName() + " (Cost: " + getBloodCost() + ")";
 	}
 }
